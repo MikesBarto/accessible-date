@@ -1,0 +1,33 @@
+{
+  "name": "accessible-date",
+  "version": "1.0.0",
+  "description": "Readable, accessible dates for screen readers.",
+  "main": "dist/accessible-date.js",
+  "scripts": {
+    "test": "mocha --compilers js:babel-core/register --reporter spec",
+    "build": "babel --presets babel-preset-env src --out-dir dist",
+    "prepublish": "npm test; npm run build"
+  },
+  "keywords": [
+    "accessible",
+    "accessibility",
+    "date",
+    "format",
+    "screen",
+    "reader"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "jsdom": "^11.6.2",
+    "mocha": "^3.5.3"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "author": "Barry Horbal",
+  "license": "ISC"
+}
