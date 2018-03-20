@@ -29,7 +29,7 @@ const time3data = document.getElementById('time3').getAttribute('datetime');
 const time4data = document.getElementById('time4').getAttribute('datetime');
 const time5data = document.getElementById('time5').getAttribute('datetime');
 const time6data = document.getElementById('time6').getAttribute('datetime');
-describe('The accessible date should return an accessible string formatted in', () => {
+describe('The accessible English date should return an accessible string formatted in', () => {
 	let times = {
 		isoDateTimePM: {},
 		isoDateTimeAM: {},
@@ -39,24 +39,24 @@ describe('The accessible date should return an accessible string formatted in', 
 		isoDateFullDate: {}
 	};
 	before(() => {
-		times.isoDateTimePM.standard = accessibleDate(time1data, {format: `DD, M D, Y at H MM m`, military: false});
-		times.isoDateTimePM.military = accessibleDate(time1data, {format: `DD, M D, Y at H MM m`, military: true});
-		times.isoDateTimePM.noMeridian = accessibleDate(time1data, {format: `DD, M D, Y at H MM`, military: true});
-		times.isoDateTimeAM.standard = accessibleDate(time2data, {format: `DD, M D, Y at H MM m`, military: false});
-		times.isoDateTimeAM.military = accessibleDate(time2data, {format: `DD, M D, Y at H MM m`, military: true});
-		times.isoDateTimeAM.noMeridian = accessibleDate(time2data, {format: `DD, M D, Y at H MM`, military: true});
-		times.isoDateTimeMillisecons.standard = accessibleDate(time3data, {format: `DD, M D, Y at H MM m`, military: false});
-		times.isoDateTimeMillisecons.military = accessibleDate(time3data, {format: `DD, M D, Y at H MM m`, military: true});
-		times.isoDateTimeMillisecons.noMeridian = accessibleDate(time3data, {format: `DD, M D, Y at H MM`, military: true});
-		times.isoDateTimeTimezone.standard = accessibleDate(time4data, {format: `DD, M D, Y at H MM m`, military: false});
-		times.isoDateTimeTimezone.military = accessibleDate(time4data, {format: `DD, M D, Y at H MM m`, military: true});
-		times.isoDateTimeTimezone.noMeridian = accessibleDate(time4data, {format: `DD, M D, Y at H MM`, military: true});
-		times.isoDateDateOnly.standard = accessibleDate(time5data, {format: `DD, M D, Y at H MM m`, military: false});
-		times.isoDateDateOnly.military = accessibleDate(time5data, {format: `DD, M D, Y at H MM m`, military: true});
-		times.isoDateDateOnly.noMeridian = accessibleDate(time5data, {format: `DD, M D, Y at H MM`, military: true});
-		times.isoDateFullDate.standard = accessibleDate(time6data, {format: `DD, M D, Y at H MM m`, military: false});
-		times.isoDateFullDate.military = accessibleDate(time6data, {format: `DD, M D, Y at H MM m`, military: true});
-		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD, M D, Y at H MM`, military: true});
+		times.isoDateTimePM.standard = accessibleDate(time1data, {format: `DD, M D, Y at H MM m`, military: false, language: `en`});
+		times.isoDateTimePM.military = accessibleDate(time1data, {format: `DD, M D, Y at H MM m`, military: true, language: `en`});
+		times.isoDateTimePM.noMeridian = accessibleDate(time1data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
+		times.isoDateTimeAM.standard = accessibleDate(time2data, {format: `DD, M D, Y at H MM m`, military: false, language: `en`});
+		times.isoDateTimeAM.military = accessibleDate(time2data, {format: `DD, M D, Y at H MM m`, military: true, language: `en`});
+		times.isoDateTimeAM.noMeridian = accessibleDate(time2data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
+		times.isoDateTimeMillisecons.standard = accessibleDate(time3data, {format: `DD, M D, Y at H MM m`, military: false, language: `en`});
+		times.isoDateTimeMillisecons.military = accessibleDate(time3data, {format: `DD, M D, Y at H MM m`, military: true, language: `en`});
+		times.isoDateTimeMillisecons.noMeridian = accessibleDate(time3data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
+		times.isoDateTimeTimezone.standard = accessibleDate(time4data, {format: `DD, M D, Y at H MM m`, military: false, language: `en`});
+		times.isoDateTimeTimezone.military = accessibleDate(time4data, {format: `DD, M D, Y at H MM m`, military: true, language: `en`});
+		times.isoDateTimeTimezone.noMeridian = accessibleDate(time4data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
+		times.isoDateDateOnly.standard = accessibleDate(time5data, {format: `DD, M D, Y at H MM m`, military: false, language: `en`});
+		times.isoDateDateOnly.military = accessibleDate(time5data, {format: `DD, M D, Y at H MM m`, military: true, language: `en`});
+		times.isoDateDateOnly.noMeridian = accessibleDate(time5data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
+		times.isoDateFullDate.standard = accessibleDate(time6data, {format: `DD, M D, Y at H MM m`, military: false, language: `en`});
+		times.isoDateFullDate.military = accessibleDate(time6data, {format: `DD, M D, Y at H MM m`, military: true, language: `en`});
+		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
 	});
     it('ISO Date and Time, PM', () => {
 		expect(times.isoDateTimePM.standard).to.equal('Tuesday, May fifteenth, two thousand one at seven thirty p m');
@@ -87,5 +87,53 @@ describe('The accessible date should return an accessible string formatted in', 
 		expect(times.isoDateFullDate.standard).to.equal('Wednesday, March twenty-fifth, two thousand fifteen at eight fifty-six a m');
 		expect(times.isoDateFullDate.military).to.equal('Wednesday, March twenty-fifth, two thousand fifteen at zero eight fifty-six');
 		expect(times.isoDateFullDate.noMeridian).to.equal('Wednesday, March twenty-fifth, two thousand fifteen at zero eight fifty-six');
+	});
+});
+describe('The accessible Spanish date should return an accessible string formatted in', () => {
+	let times = {
+		isoDateTimePM: {},
+		isoDateTimeAM: {},
+		isoDateTimeMillisecons: {},
+		isoDateTimeTimezone: {},
+		isoDateDateOnly: {},
+		isoDateFullDate: {}
+	};
+	before(() => {
+		times.isoDateTimePM.standard = accessibleDate(time1data, {format: `DD, el D de M, Y a H MM m`, military: false, language: `es`});
+		times.isoDateTimePM.noMeridian = accessibleDate(time1data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
+		times.isoDateTimeAM.standard = accessibleDate(time2data, {format: `DD, el D de M, Y a H MM m`, military: false, language: `es`});
+		times.isoDateTimeAM.noMeridian = accessibleDate(time2data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
+		times.isoDateTimeMillisecons.standard = accessibleDate(time3data, {format: `DD, el D de M, Y a H MM m`, military: false, language: `es`});
+		times.isoDateTimeMillisecons.noMeridian = accessibleDate(time3data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
+		times.isoDateTimeTimezone.standard = accessibleDate(time4data, {format: `DD, el D de M, Y a H MM m`, military: false, language: `es`});
+		times.isoDateTimeTimezone.noMeridian = accessibleDate(time4data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
+		times.isoDateDateOnly.standard = accessibleDate(time5data, {format: `DD, el D de M, Y a H MM m`, military: false, language: `es`});
+		times.isoDateDateOnly.noMeridian = accessibleDate(time5data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
+		times.isoDateFullDate.standard = accessibleDate(time6data, {format: `DD, el D de M, Y a H MM m`, military: false, language: `es`});
+		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
+	});
+    it('ISO Date and Time, PM', () => {
+		expect(times.isoDateTimePM.standard).to.equal('martes, el quince de mayo, dos mil uno a siete y media de la tarde');
+		expect(times.isoDateTimePM.noMeridian).to.equal('martes, el quince de mayo, dos mil uno a siete y media');
+	});
+	it('ISO Date and Time, AM', () => {
+		expect(times.isoDateTimeAM.standard).to.equal('jueves, el treinta y uno de mayo, dos mil dieceocho a siete y media de la mañana');
+		expect(times.isoDateTimeAM.noMeridian).to.equal('jueves, el treinta y uno de mayo, dos mil dieceocho a siete y media');
+	});
+	it('ISO Date and Time, Milliseconds', () => {
+		expect(times.isoDateTimeMillisecons.standard).to.equal('martes, el quince de mayo, dos mil dieceocho a siete y media de la tarde');
+		expect(times.isoDateTimeMillisecons.noMeridian).to.equal('martes, el quince de mayo, dos mil dieceocho a siete y media');
+	});
+	it('ISO Date and Time, Timezone', () => {
+		expect(times.isoDateTimeTimezone.standard).to.equal('jueves, el treinta y uno de mayo, dos mil dieceocho a nueve y media de la mañana');
+		expect(times.isoDateTimeTimezone.noMeridian).to.equal('jueves, el treinta y uno de mayo, dos mil dieceocho a nueve y media');
+	});
+	it('ISO Date and Time, Date Only', () => {
+		expect(times.isoDateDateOnly.standard).to.equal('miércoles, el veinticinco de marzo, dos mil quince a doce de la mañana');
+		expect(times.isoDateDateOnly.noMeridian).to.equal('miércoles, el veinticinco de marzo, dos mil quince a doce');
+	});
+	it('ISO Date and Time, Full Date', () => {
+		expect(times.isoDateFullDate.standard).to.equal('miércoles, el veinticinco de marzo, dos mil quince a ocho y cincuenta y seis de la mañana');
+		expect(times.isoDateFullDate.noMeridian).to.equal('miércoles, el veinticinco de marzo, dos mil quince a ocho y cincuenta y seis');
 	});
 });
