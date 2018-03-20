@@ -1,6 +1,8 @@
 # accessible-date
 
-**accessible-date** is an npm module that creates readable, accessible dates for screen readers. These dates are returned in Coordinated Universal Time (UTC). Screen readers have a hard time deciphering what is and isn’t a date in HTML. For example, if a screen reader comes across the following timestamp:
+**accessible-date** is an npm module that creates readable, accessible dates for screen readers. These dates are returned in Coordinated Universal Time (UTC), and are currently available in English and Spanish, with more languages to come.
+
+Screen readers have a hard time deciphering what is and isn’t a date in HTML. For example, if a screen reader comes across the following timestamp:
 
 ```
 <time id="timestamp" datetime="2001-05-15T19:30">May 15, 2001 - 7:30pm</time>
@@ -33,6 +35,7 @@ const accessibleDate = require('accessible-date');
 const timestampElem = document.getElementById('timestamp');
 const newAccessibleDate = accessibleDate(timestampElem.getAttribute('datetime'), {
     format: `DD, M D, Y at H MM m`,
+    language: `en`,
     military: false
 });
 ```
@@ -75,6 +78,9 @@ How the returned string is formatted. You can use any combination of the followi
 - `H` - Hour (ex: “Eleven,” “Twelve,” etc)
 - `S` - Second (ex: “Twenty-eight,” “Twenty-nine,” etc)
 - `m` - Meridian (ex: “A M,” “P M”)
+
+`settings.language` - ***default*** `en`
+Set the language you want the output to be formatted to. Currently, it supports English (`en`) and Spanish (`es`), but more languages will continue to be added.
 
 `settings.military` - ***default*** `false`
 If set to `true`, date will display in military time. Otherwise, it defaults to displaying in standard time.
