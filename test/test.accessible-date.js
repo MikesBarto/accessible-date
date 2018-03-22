@@ -11,6 +11,11 @@ const time3data = `2018-05-15T19:30:00Z`;
 const time4data = `2018-05-31T07:30:00-02:00`;
 const time5data = `2015-03-25`;
 const time6data = `Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)`;
+describe('The accessible date', () => {
+	it('should ignore words in the ignore string', () => {
+		expect(accessibleDate(time1data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).to.equal('Tuesday, May Month fifteenth Date Day, two thousand one Year at seven Hour thirty minutes p m');
+	});
+});
 describe('The accessible English date should return an accessible string formatted in', () => {
 	let times = {
 		isoDateTimePM: {},
