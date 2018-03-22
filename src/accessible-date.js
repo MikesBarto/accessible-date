@@ -10,7 +10,8 @@ module.exports = function accessibleDate(date, options) {
         supportedLanguages: [`en`, `es`, `fr`],
         language: '',
         military: false,
-        format: ''
+        format: '',
+        ignore: [`heure`, `heures`, `minute`, `minutes`, `second`, `seconds`, `Day`, `Date`, `Hour`, `Month`, `Meridian`, `Second`, `Year`]
     };
 
     if (!options.format || typeof options.format !== 'string') {
@@ -32,6 +33,12 @@ module.exports = function accessibleDate(date, options) {
         !settings.language.match(/es|fr/)
     ) {
         settings.military = options.military;
+    }
+
+    if (options.ignore && Array.isArray(options.ignore)) {
+        options.ignore.forEach(ignoreString => {
+            settings.ignore.push(ignoreString); 
+        });
     }
 
     // Add settings object that holds the parts of the date formatted
@@ -134,6 +141,11 @@ module.exports = function accessibleDate(date, options) {
     const formatArray = settings.format.split(' ');
     return formatArray.map(datePart => {
         let datePartFormatted = datePart;
+        for (let j = 0; j < settings.ignore.length; j++) {
+            if (datePart.indexOf(settings.ignore[j]) !== -1) {
+                return datePartFormatted;
+            }
+        }
         for (let i = 0; i < datePartsParsedArray.length; i++) {
             if (datePart.indexOf(datePartsParsedArray[i]) !== -1) {
                 datePartFormatted = datePart.replace(datePartsParsedArray[i], datePartsParsed[datePartsParsedArray[i]]);
