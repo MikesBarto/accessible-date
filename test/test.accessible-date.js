@@ -1,34 +1,16 @@
 'use strict';
 
-import { JSDOM } from 'jsdom';
 import { expect } from 'chai';
 
-const jsdom = new JSDOM(`
-	<!doctype html>
-	<html>
-	<body>
-		<time id="time1" datetime="2001-05-15T19:30">May 15, 2001</time>
-		<time id="time2" datetime="2018-05-31T07:30">May 31, 2018</time>
-		<time id="time3" datetime="2018-05-15T19:30:00Z">May 15, 2018</time>
-		<time id="time4" datetime="2018-05-31T07:30:00-02:00">May 31, 2018</time>
-		<time id="time5" datetime="2015-03-25">March 25, 2015</time>
-		<time id="time6" datetime="Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)">2000</time>
-	</body>
-	</html>`);
-const { window } = jsdom;
-
-global.window = window;
-global.document = window.document;
-global.HTMLElement = global.window.HTMLElement;
 global.expect = expect;
 
 const accessibleDate = require('../src/accessible-date.js');
-const time1data = document.getElementById('time1').getAttribute('datetime');
-const time2data = document.getElementById('time2').getAttribute('datetime');
-const time3data = document.getElementById('time3').getAttribute('datetime');
-const time4data = document.getElementById('time4').getAttribute('datetime');
-const time5data = document.getElementById('time5').getAttribute('datetime');
-const time6data = document.getElementById('time6').getAttribute('datetime');
+const time1data = `2001-05-15T19:30`;
+const time2data = `2018-05-31T07:30`;
+const time3data = `2018-05-15T19:30:00Z`;
+const time4data = `2018-05-31T07:30:00-02:00`;
+const time5data = `2015-03-25`;
+const time6data = `Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)`;
 describe('The accessible English date should return an accessible string formatted in', () => {
 	let times = {
 		isoDateTimePM: {},
