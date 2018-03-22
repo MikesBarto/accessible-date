@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - Internationalization
 
+## [1.2.0] - 2018-03-21
+### Added
+- Now supports French dates and times.
+
 ## [1.1.0] - 2018-03-20
 ### Added
 - Now supports Spanish dates and times.

@@ -20,7 +20,8 @@
     "screen",
     "reader",
     "english",
-    "spanish"
+    "spanish",
+    "french"
   ],
   "devDependencies": {
     "babel-cli": "^6.26.0",
