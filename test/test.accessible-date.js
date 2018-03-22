@@ -1,34 +1,16 @@
 'use strict';
 
-import { JSDOM } from 'jsdom';
 import { expect } from 'chai';
 
-const jsdom = new JSDOM(`
-	<!doctype html>
-	<html>
-	<body>
-		<time id="time1" datetime="2001-05-15T19:30">May 15, 2001</time>
-		<time id="time2" datetime="2018-05-31T07:30">May 31, 2018</time>
-		<time id="time3" datetime="2018-05-15T19:30:00Z">May 15, 2018</time>
-		<time id="time4" datetime="2018-05-31T07:30:00-02:00">May 31, 2018</time>
-		<time id="time5" datetime="2015-03-25">March 25, 2015</time>
-		<time id="time6" datetime="Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)">2000</time>
-	</body>
-	</html>`);
-const { window } = jsdom;
-
-global.window = window;
-global.document = window.document;
-global.HTMLElement = global.window.HTMLElement;
 global.expect = expect;
 
 const accessibleDate = require('../src/accessible-date.js');
-const time1data = document.getElementById('time1').getAttribute('datetime');
-const time2data = document.getElementById('time2').getAttribute('datetime');
-const time3data = document.getElementById('time3').getAttribute('datetime');
-const time4data = document.getElementById('time4').getAttribute('datetime');
-const time5data = document.getElementById('time5').getAttribute('datetime');
-const time6data = document.getElementById('time6').getAttribute('datetime');
+const time1data = `2001-05-15T19:30`;
+const time2data = `2018-05-31T07:30`;
+const time3data = `2018-05-15T19:30:00Z`;
+const time4data = `2018-05-31T07:30:00-02:00`;
+const time5data = `2015-03-25`;
+const time6data = `Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)`;
 describe('The accessible English date should return an accessible string formatted in', () => {
 	let times = {
 		isoDateTimePM: {},
@@ -135,5 +117,53 @@ describe('The accessible Spanish date should return an accessible string formatt
 	it('ISO Date and Time, Full Date', () => {
 		expect(times.isoDateFullDate.standard).to.equal('miércoles, el veinticinco de marzo, dos mil quince a ocho y cincuenta y seis de la mañana');
 		expect(times.isoDateFullDate.noMeridian).to.equal('miércoles, el veinticinco de marzo, dos mil quince a ocho y cincuenta y seis');
+	});
+});
+describe('The accessible French date should return an accessible string formatted in', () => {
+	let times = {
+		isoDateTimePM: {},
+		isoDateTimeAM: {},
+		isoDateTimeMillisecons: {},
+		isoDateTimeTimezone: {},
+		isoDateDateOnly: {},
+		isoDateFullDate: {}
+	};
+	before(() => {
+		times.isoDateTimePM.standard = accessibleDate(time1data, {format: `DD D M Y à H heures MM m`, military: false, language: `fr`});
+		times.isoDateTimePM.noMeridian = accessibleDate(time1data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
+		times.isoDateTimeAM.standard = accessibleDate(time2data, {format: `DD D M Y à H heures MM m`, military: false, language: `fr`});
+		times.isoDateTimeAM.noMeridian = accessibleDate(time2data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
+		times.isoDateTimeMillisecons.standard = accessibleDate(time3data, {format: `DD D M Y à H heures MM m`, military: false, language: `fr`});
+		times.isoDateTimeMillisecons.noMeridian = accessibleDate(time3data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
+		times.isoDateTimeTimezone.standard = accessibleDate(time4data, {format: `DD D M Y à H heures MM m`, military: false, language: `fr`});
+		times.isoDateTimeTimezone.noMeridian = accessibleDate(time4data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
+		times.isoDateDateOnly.standard = accessibleDate(time5data, {format: `DD D M Y à H heures MM m`, military: false, language: `fr`});
+		times.isoDateDateOnly.noMeridian = accessibleDate(time5data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
+		times.isoDateFullDate.standard = accessibleDate(time6data, {format: `DD D M Y à H heures MM m`, military: false, language: `fr`});
+		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
+	});
+    it('ISO Date and Time, PM', () => {
+		expect(times.isoDateTimePM.standard).to.equal('mardi quinze mai deux mille une à dix-neuf heures trente du soir');
+		expect(times.isoDateTimePM.noMeridian).to.equal('mardi quinze mai deux mille une à dix-neuf heures trente');
+	});
+	it('ISO Date and Time, AM', () => {
+		expect(times.isoDateTimeAM.standard).to.equal('jeudi Trente et un mai deux mille dix-huit à sept heures trente du matin');
+		expect(times.isoDateTimeAM.noMeridian).to.equal('jeudi Trente et un mai deux mille dix-huit à sept heures trente');
+	});
+	it('ISO Date and Time, Milliseconds', () => {
+		expect(times.isoDateTimeMillisecons.standard).to.equal('mardi quinze mai deux mille dix-huit à dix-neuf heures trente du soir');
+		expect(times.isoDateTimeMillisecons.noMeridian).to.equal('mardi quinze mai deux mille dix-huit à dix-neuf heures trente');
+	});
+	it('ISO Date and Time, Timezone', () => {
+		expect(times.isoDateTimeTimezone.standard).to.equal('jeudi Trente et un mai deux mille dix-huit à neuf heures trente du matin');
+		expect(times.isoDateTimeTimezone.noMeridian).to.equal('jeudi Trente et un mai deux mille dix-huit à neuf heures trente');
+	});
+	it('ISO Date and Time, Date Only', () => {
+		expect(times.isoDateDateOnly.standard).to.equal('mercredi vingt-cinq mars deux mille quinze à zéro heures du matin');
+		expect(times.isoDateDateOnly.noMeridian).to.equal('mercredi vingt-cinq mars deux mille quinze à zéro heures');
+	});
+	it('ISO Date and Time, Full Date', () => {
+		expect(times.isoDateFullDate.standard).to.equal('mercredi vingt-cinq mars deux mille quinze à huit heures cinquante-six du matin');
+		expect(times.isoDateFullDate.noMeridian).to.equal('mercredi vingt-cinq mars deux mille quinze à huit heures cinquante-six');
 	});
 });
