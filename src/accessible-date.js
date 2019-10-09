@@ -7,7 +7,7 @@ module.exports = function accessibleDate(date, options) {
     }
 
     const settings = {
-        supportedLanguages: [`en`, `es`, `fr`],
+        supportedLanguages: [`en`, `es`, `fr`, `it`],
         language: '',
         military: false,
         format: '',
@@ -30,7 +30,7 @@ module.exports = function accessibleDate(date, options) {
     if (
         options.military &&
         typeof options.military === `boolean` &&
-        !settings.language.match(/es|fr/)
+        !settings.language.match(/es|fr|it/)
     ) {
         settings.military = options.military;
     }
@@ -47,7 +47,8 @@ module.exports = function accessibleDate(date, options) {
         day: {
             en: [`Sunday`, `Monday`, `Tuesday`, `Wednesday`, `Thursday`, `Friday`, `Saturday`],
             es: [`domingo`, `lunes`, `martes`, `miércoles`, `jueves`, `viernes`, `sábado`],
-            fr: [`dimanche`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`]
+            fr: [`dimanche`, `lundi`, `mardi`, `mercredi`, `jeudi`, `vendredi`, `samedi`],
+            it: [`domenica`, `lunedì`, `martedì`, `mercoledì`, `giovedì`, `venerdì`, `sabato`],
         },
         // Minute (MM)
         minute: {
@@ -60,13 +61,17 @@ module.exports = function accessibleDate(date, options) {
             },
             fr: {
                 standard: [``, `une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`, `vingt-quatre`, `vingt-cinq`, `vingt-six`, `vingt-sept`, `vingt-huit`, `vingt-neuf`, `trente`, `Trente et un`, `Trente-deux`, `Trente-trois`, `Trente-quatre`, `Trente-cinq`, `Trente-six`, `Trente-sept`, `Trente-huit`, `Trente-neuf`, `quarante`, `quarante et un`, `quarante-deux`, `quarante-trois`, `quarante-quatre`, `quarante-cinq`, `quarante-six`, `quarante-sept`, `quarante-huit`, `quarante-neuf`, `cinquante`, `cinquante et un`, `cinquante-deux`, `cinquante-trois`, `cinquante-quatre`, `cinquante-cinq`, `cinquante-six`, `cinquante-sept`, `cinquante-huit`, `cinquante-neuf`]
-            }
+            },
+            it: {
+                standard: [``, `uno`, `due`, `tre`, `quattro`, `cinque`, `sei`, `sette`, `otto`, `nove`, `dieci`, `undici`, `dodici`, `tredici`, `quattordici`, `quindici`, `sedici`, `diciassette`, `diciotto`, `diciannove`, `venti`, `ventuno`, `ventidue`, `ventitre`, `ventiquattro`, `venticinque`, `ventisei`, `ventisette`, `ventotto`, `ventinove`, `trenta`, `trentuno`, `trentdue`, `trentatre`, `trentaquattro`, `trentacinque`, `trentasei`, `trentasette`, `trentotto`, `trentanove`, `quaranta`, `quarantuno`, `quarantadue`, `quarantatre`, `quarantaquattro`, `quarantacinque`, `quarantasei`, `quarantasette`, `quarantotto`, `quarantanove`, `quarantacinque`, `quarantasei`, `quarantasette`, `quarantotto`, `quarantanove`, `cinquanta`, `cinquantuno`, `cinquantadue`, `cinquantatre`, `cinquantaquattro`, `cinquantacinque` `cinquantasei`, `cinquantasette`, `cinquantotto`, `cinquantanove`]
+            },
         },
         // Date (D)
         date: {
             en: [`first`, `second`, `third`, `fourth`, `fifth`, `sixth`, `seventh`, `eigth`, `ninth`, `tenth`, `eleventh`, `twelfth`, `thirteenth`, `fourteenth`, `fifteenth`, `sixteenth`, `seventeenth`, `eighteenth`, `nineteenth`, `twentieth`, `twenty-first`, `twenty-second`, `twenty-third`, `twenty-fourth`, `twenty-fifth`, `twenty-sixth`, `twenty-seventh`, `twenty-eighth`, `twenty-ninth`, `thirtieth`, `thirty-first`],
             es: [`uno`, `dos`, `tres`, `cuatro`, `cinco`, `seis`, `siete`, `ocho`, `nueve`, `diez`, `once`, `doce`, `trece`, `catorce`, `quince`, `dieceseis`, `diecesiete`, `dieceocho`, `diecenueve`, `veinte`, `veintiuno`, `veintidós`, `veintitrés`, `veinticuatro`, `veinticinco`, `veintiséis`, `veintisiete`, `veintiocho`, `veintinueve`, `treinta`, `treinta y uno`],
-            fr: [`une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`, `vingt-quatre`, `vingt-cinq`, `vingt-six`, `vingt-sept`, `vingt-huit`, `vingt-neuf`, `trente`, `Trente et un`]
+            fr: [`une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`, `vingt-quatre`, `vingt-cinq`, `vingt-six`, `vingt-sept`, `vingt-huit`, `vingt-neuf`, `trente`, `Trente et un`],
+            it: [ `uno`, `due`, `tre`, `quattro`, `cinque`, `sei`, `sette`, `otto`, `nove`, `dieci`, `undici`, `dodici`, `tredici`, `quattordici`, `quindici`, `sedici`, `diciassette`, `diciotto`, `diciannove`, `venti`, `ventuno`, `ventidue`, `ventitre`, `ventiquattro`, `venticinque`, `ventisei`, `ventisette`, `ventotto`, `ventinove`, `trenta`, `trentuno`]
         },
         // Hour (H)
         hour: {
@@ -79,19 +84,24 @@ module.exports = function accessibleDate(date, options) {
             },
             fr: {
                 standard: [`zéro`, `une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`]
-            }
+            },
+            it : {
+                standard: [`zero`, `uno`, `due`, `tre`, `quattro`, `cinque`, `sei`, `sette`, `otto`, `nove`, `dieci`, `undici`, `dodici`, `tredici`, `quattordici`, `quindici`, `sedici`, `diciassette`, `diciotto`, `diciannove`, `venti`, `ventuno`, `ventidue`, `ventitre`,]
+            },
         },
         // Month (M)
         month: {
             en: [`January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, `December`],
             es: [`enero`, `febrero`, `marzo`, `abril`, `mayo`, `junio`, `julio`, `agusto`, `spetiembre`, `octubre`, `noviembre`, `diciembre`],
-            fr: [`janvier`, `février`, `mars`, `avril`, `mai`, `juin`, `juillet`, `août`, `septembre`, `octobre`, `novembre`, `décembre`]
+            fr: [`janvier`, `février`, `mars`, `avril`, `mai`, `juin`, `juillet`, `août`, `septembre`, `octobre`, `novembre`, `décembre`],
+            it: [`gennaio`, `febbraio`, `marzo`, `aprile`, `maggio`, `giugno`, `luglio`, `agosto`, `settembre`, `ottobre`, `novembre`, `dicembre`]
         },
         // Second (S)
         second: {
             en: [`zero`, `one`, `two`, `three`, `four`, `five`, `six`, `seven`, `eight`, `nine`, `ten`, `eleven`, `twelve`, `thirteen`, `fourteen`, `fifteen`, `sixteen`, `seventeen`, `eighteen`, `nineteen`, `twenty`, `twenty-one`, `twenty-two`, `twenty-three`, `twenty-four`, `twenty-five`, `twenty-six`, `twenty-seven`, `twenty-eight`, `twenty-nine`, `thirty`, `thirty-one`, `thirty-two`, `thirty-three`, `thirty-four`, `thirty-five`, `thirty-six`, `thirty-seven`, `thirty-eight`, `thirty-nine`, `fourty`, `fourty-one`, `fourty-two`, `fourty-three`, `fourty-four`, `fourty-five`, `fourty-six`, `fourty-seven`, `fourty-eight`, `fourty-nine`, `fifty`, `fifty-one`, `fifty-two`, `fifty-three`, `fifty-four`, `fifty-five`, `fifty-six`, `fifty-seven`, `fifty-eight`, `fifty-nine`],
             es: [`cero`, `uno`, `dos`, `tres`, `cuatro`, `cinco`, `seis`, `siete`, `ocho`, `nueve`, `diez`, `once`, `doce`, `trece`, `catorce`, `quince`, `dieceseis`, `diecesiete`, `dieceocho`, `diecenueve`, `veinte`, `veintiuno`, `veintidós`, `veintitrés`, `veinticuatro`, `veinticinco`, `veintiséis`, `veintisiete`, `veintiocho`, `veintinueve`, `treinta`, `treinta y uno`, `treinta y dos`, `treinta y tres`, `treinta y cuatro`, `treinta y cinco`, `treinta y seis`, `treinta y siete`, `trienta y ocho`, `treinta y nueve`, `cuarenta`, `cuarenta y uno`, `curatenta y dos`, `cuarenta y trece`, `cuarenta y cuatro`, `cuarenta y cinco`, `cuarenta y seis`, `cuarenta y siete`, `cuarenta y ocho`, `cuarenta y nueve`, `cincuenta`, `cincuenta y uno`, `cincuenta y dos`, `cincuenta y trece`, `cincuenta y cuatro`, `cincuenta y cinco`, `cincuenta y seis`, `cincuenta y siete`, `cincuenta y ocho`, `cincuenta y nueve`],
-            fr: [``, `une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`, `vingt-quatre`, `vingt-cinq`, `vingt-six`, `vingt-sept`, `vingt-huit`, `vingt-neuf`, `trente`, `Trente et un`, `Trente-deux`, `Trente-trois`, `Trente-quatre`, `Trente-cinq`, `Trente-six`, `Trente-sept`, `Trente-huit`, `Trente-neuf`, `quarante`, `quarante et un`, `quarante-deux`, `quarante-trois`, `quarante-quatre`, `quarante-cinq`, `quarante-six`, `quarante-sept`, `quarante-huit`, `quarante-neuf`, `cinquante`, `cinquante et un`, `cinquante-deux`, `cinquante-trois`, `cinquante-quatre`, `cinquante-cinq`, `cinquante-six`, `cinquante-sept`, `cinquante-huit`, `cinquante-neuf`]
+            fr: [``, `une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`, `vingt-quatre`, `vingt-cinq`, `vingt-six`, `vingt-sept`, `vingt-huit`, `vingt-neuf`, `trente`, `Trente et un`, `Trente-deux`, `Trente-trois`, `Trente-quatre`, `Trente-cinq`, `Trente-six`, `Trente-sept`, `Trente-huit`, `Trente-neuf`, `quarante`, `quarante et un`, `quarante-deux`, `quarante-trois`, `quarante-quatre`, `quarante-cinq`, `quarante-six`, `quarante-sept`, `quarante-huit`, `quarante-neuf`, `cinquante`, `cinquante et un`, `cinquante-deux`, `cinquante-trois`, `cinquante-quatre`, `cinquante-cinq`, `cinquante-six`, `cinquante-sept`, `cinquante-huit`, `cinquante-neuf`],
+            it: [`uno`, `due`, `tre`, `quattro`, `cinque`, `sei`, `sette`, `otto`, `nove`, `dieci`, `undici`, `dodici`, `tredici`, `quattordici`, `quindici`, `sedici`, `diciassette`, `diciotto`, `diciannove`, `venti`, `ventuno`, `ventidue`, `ventitre`, `ventiquattro`, `venticinque`, `ventisei`, `ventisette`, `ventotto`, `ventinove`, `trenta`, `trentuno`, `trentdue`, `trentatre`, `trentaquattro`, `trentacinque`, `trentasei`, `trentasette`, `trentotto`, `trentanove`, `quaranta`, `quarantuno`, `quarantadue`, `quarantatre`, `quarantaquattro`, `quarantacinque`, `quarantasei`, `quarantasette`, `quarantotto`, `quarantanove`, `quarantacinque`, `quarantasei`, `quarantasette`, `quarantotto`, `quarantanove`, `cinquanta`, `cinquantuno`, `cinquantadue`, `cinquantatre`, `cinquantaquattro`, `cinquantacinque` `cinquantasei`, `cinquantasette`, `cinquantotto`, `cinquantanove`],
         },
         // Year (Y)
         year: {
@@ -106,13 +116,18 @@ module.exports = function accessibleDate(date, options) {
             fr: {
                 century: [``, `cent`, `deux cents`, `trois cents`, `quatre cents`, `cinq cents`, `six cents`, `sept cents`, `huit cents`, `neuf cents`, `mille`, `mille cent`, `mille deux cents`, `mille trois cents`, `mille quatre cents`, `mille cinq cents`, `mille six cents`, `mille sept cents`, `mille huit cents`, `mille neuf cents`, `deux mille`, `deux mille cent`],
                 decade: [``, `une`, `deux`, `trois`, `quatre`, `cinq`, `six`, `sept`, `huit`, `neuf`, `dix`, `onze`, `douze`, `treize`, `quatorze`, `quinze`, `seize`, `dix-sept`, `dix-huit`, `dix-neuf`, `vingt`, `vingt et un`, `vingt-deux`, `vingt-trois`, `vingt-quatre`, `vingt-cinq`, `vingt-six`, `vingt-sept`, `vingt-huit`, `vingt-neuf`, `trente`, `Trente et un`, `Trente-deux`, `Trente-trois`, `Trente-quatre`, `Trente-cinq`, `Trente-six`, `Trente-sept`, `Trente-huit`, `Trente-neuf`, `quarante`, `quarante et un`, `quarante-deux`, `quarante-trois`, `quarante-quatre`, `quarante-cinq`, `quarante-six`, `quarante-sept`, `quarante-huit`, `quarante-neuf`, `cinquante`, `cinquante et un`, `cinquante-deux`, `cinquante-trois`, `cinquante-quatre`, `cinquante-cinq`, `cinquante-six`, `cinquante-sept`, `cinquante-huit`, `cinquante-neuf`, `soixante`, `soixante et un`, `soixante-deux`, `soixante-trois`, `soixante-quatre`, `soixante-cinq`, `soixante-six`, `soixante-sept`, `soixante-huit`, `soixante-neuf`, `soixante-dix`, `soixante-et-onze`, `soixante-douze`, `soixante-treize`, `soixante-quatorze`, `soixante-quinze`, `soixante-seize`, `soixante-dix-sept`, `soixante-dix-huit`, `soixante-dix-neuf`, `quatre-vingts`, `quatre-vingt-un`, `quatre-vingt-deux`, `quatre-vingt-trois`, `quatre-vingt-quatre`, `quatre-vingt-cinq`, `quatre-vingt-six`, `quatre-vingt-sept`, `quatre-vingt-huit`, `quatre-vingt-neuf`, `quatre-vingt-dix`, `quatre-vingt-onze`, `quatre-vingt-douze`, `quatre-vingt-treize`, `quatre-vingt-quatorze`, `quatre-vingt-quinze`, `quatre-vingt-seize`, `quatre-vingt-dix-sept`, `quatre-vingt-dix-huit`, `quatre-vingt-dix-neuf`]
+            },
+            it: {
+                century: [``, `cento`, `duecento`, `trecento`, `quattrocento`, `cinquecento`, `seicento`, `settecento`, `ottocento`, `novecento`, `mille`, `millecento`, `milleduecento`, `milletrecento`, `millequattrocento`, `milleciquecento`, `milleseicento`, `millesettecento`, `milleottocento`, `millenovecento`, `duemila`, `duemilacento`],
+                decade: [``, `uno`, `due`, `tre`, `quattro`, `cinque`, `sei`, `sette`, `otto`, `nove`, `dieci`, `undici`, `dodici`, `tredici`, `quattordici`, `quindici`, `sedici`, `diciassette`, `diciotto`, `diciannove`, `venti`, `ventuno`, `ventidue`, `ventitre`, `ventiquattro`, `venticinque`, `ventisei`, `ventisette`, `ventotto`, `ventinove`, `trenta`, `trentuno`, `trentdue`, `trentatre`, `trentaquattro`, `trentacinque`, `trentasei`, `trentasette`, `trentotto`, `trentanove`, `quaranta`, `quarantuno`, `quarantadue`, `quarantatre`, `quarantaquattro`, `quarantacinque`, `quarantasei`, `quarantasette`, `quarantotto`, `quarantanove`, `quarantacinque`, `quarantasei`, `quarantasette`, `quarantotto`, `quarantanove`, `cinquanta`, `cinquantuno`, `cinquantadue`, `cinquantatre`, `cinquantaquattro`, `cinquantacinque` `cinquantasei`, `cinquantasette`, `cinquantotto`, `cinquantanove`, `sessanta `, `sessantuno`, `sessantadue`, `sessantatre`, `sessantaquattro`, `sessantacinque`, `sessantasei`, `sessantasette`, `sessantotto`, `sessantanove`, `settanta`,`settantuno`, `settantadue`, `settantatre`, `settantaquattro`, `settantacinque`, `settantasei`, `settantasette`, `settantotto`, `settantanove`, `ottanta`, `ottantuno`, `ottantadue`, `ottantatre`, `ottantaquattro`, `ottantacinque`, `ottantasei`, `ottantasette`, `ottantotto`, `ottantanove`, `novanta`, `novantuno`, `novantadue`, `novantatre`, `novantaquattro`, `novantacinque`, `novantasei`, `novantasette`, `novantotto`, `novantanove`]
             }
         },
         // Meridian (m)
         meridian: {
             en: [`a m`, `p m`],
             es: [`de la mañana`, `de la tarde`],
-            fr: [`du matin`, `du soir`]
+            fr: [`du matin`, `du soir`],
+            it: [`del mattino`, `del pomeriggio`]
         }
     };
 
