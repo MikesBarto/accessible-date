@@ -10,12 +10,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - German Internationalization
 - Italian Internationalization
 
-## [2.0.1] - 2023-08-18
-
-### Changed
-
-- Removing annoying console logs.
-
 ## [2.0.0] - 2023-08-18
 
 ### Changed
