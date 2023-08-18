@@ -130,21 +130,13 @@ export default function accessibleDate(date, options) {
     // Format the date based off of the format requested
     settings.format = ` ${settings.format} `;
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])DD(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`DD`]);
-    console.info(`AFTER DD:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])MM(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`MM`]);
-    console.info(`AFTER MM:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])D(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`D`]);
-    console.info(`AFTER D:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])H(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`H`]);
-    console.info(`AFTER H:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])M(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`M`]);
-    console.info(`AFTER M:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])S(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`S`]);
-    console.info(`AFTER S:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])Y(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`Y`]);
-    console.info(`AFTER Y:`, settings.format);
     settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])m(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`m`]);
-    console.info(`AFTER m:`, settings.format);
     return settings.format.replaceAll(`  `, ` `).trim();
 
 };

@@ -1,6 +1,6 @@
 {
   "name": "accessible-date",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Readable, accessible dates for screen readers.",
   "main": "dist/accessible-date.js",
   "repository": {
