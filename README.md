@@ -22,18 +22,20 @@ Screen readers have a hard time deciphering what is and isn’t a date in HTML. 
 
 ## Installation
 
+> **NOTE**: As of version `2.0.0` of *accessible-date*, we are now using native JavaScript import/exports. If you would like to `require` this module, you need to use versions `1.3.0` or earlier.
+
 You can install the module through npm:
 
 ```
 npm install accessible-date --save
 ```
 
-Then just require the module into your JavaScript file, and give it a timestamp and a settings object hash of options:
+Then just import the module into your JavaScript file, and give it a timestamp and a settings object hash of options:
 
 ```
-const accessibleDate = require('accessible-date');
-const timestampElem = document.getElementById('timestamp');
-const newAccessibleDate = accessibleDate(timestampElem.getAttribute('datetime'), {
+import accessibleDate from "accessible-date";
+const timestampElem = document.getElementById("timestamp");
+const newAccessibleDate = accessibleDate(timestampElem.getAttribute("datetime"), {
     format: `DD, M D, Y at H MM m`,
     language: `en`,
     military: false
@@ -70,6 +72,7 @@ The settings object hash takes the following methods:
 
 `settings.format` - ***required***
 How the returned string is formatted. You can use any combination of the following values:
+
 - `DD` - Day (ex: “Sunday,” “Monday,” etc)
 - `MM` - Minute (ex: “Twelve,” “Thirteen,” etc)
 - `M` - Month (ex: “January,” “February,” etc)
@@ -84,9 +87,6 @@ Set the language you want the output to be formatted to. Currently, it supports 
 
 `settings.military` - ***default*** `false`
 If set to `true`, date will display in military time. Otherwise, it defaults to displaying in standard time.
-
-`settings.ignore` - ***default*** Preset array of terms
-This should be an array of strings that you’d like to ignore when the date is parsed. This can help avoid mistakes that the parser might make. There is a predefined array of words, and your words will be added to that array.
 
 ## Adding Extra Words
 

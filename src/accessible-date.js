@@ -1,22 +1,21 @@
-module.exports = function accessibleDate(date, options) {
+export default function accessibleDate(date, options) {
     
     // Sanity check the function params
     if (!date) {
         console.error(`accessible-date: You must supply a date in ISO format.`);
-        return '';
+        return ``;
     }
 
     const settings = {
         supportedLanguages: [`en`, `es`, `fr`],
-        language: '',
+        language: ``,
         military: false,
-        format: '',
-        ignore: [`heure`, `heures`, `minute`, `minutes`, `second`, `seconds`, `Day`, `Date`, `Hour`, `Month`, `Meridian`, `Second`, `Year`]
+        format: ``
     };
 
-    if (!options.format || typeof options.format !== 'string') {
+    if (!options.format || typeof options.format !== `string`) {
         console.error(`accessible-date: You must supply a format.`);
-        return '';
+        return ``;
     }
     settings.format = options.format;
 
@@ -33,12 +32,6 @@ module.exports = function accessibleDate(date, options) {
         !settings.language.match(/es|fr/)
     ) {
         settings.military = options.military;
-    }
-
-    if (options.ignore && Array.isArray(options.ignore)) {
-        options.ignore.forEach(ignoreString => {
-            settings.ignore.push(ignoreString); 
-        });
     }
 
     // Add settings object that holds the parts of the date formatted
@@ -131,28 +124,27 @@ module.exports = function accessibleDate(date, options) {
             let decade = dateParts.year[settings.language].decade[parseInt(year.substr(2, 3))];
             return `${century} ${decade}`;
         })(),
-        m: settings.military ? '' : (dateToFormat.getUTCHours() >= 12) ? dateParts.meridian[settings.language][1] : dateParts.meridian[settings.language][0]
+        m: settings.military ? `` : (dateToFormat.getUTCHours() >= 12) ? dateParts.meridian[settings.language][1] : dateParts.meridian[settings.language][0]
     };
     
     // Format the date based off of the format requested
-    // The final replace is there because if a dateParsedPart doesn’t exist, then it
-    // will place it in as an additional space. This removes that space.
-    const datePartsParsedArray = Object.keys(datePartsParsed);
-    const formatArray = settings.format.split(' ');
-    return formatArray.map(datePart => {
-        let datePartFormatted = datePart;
-        for (let j = 0; j < settings.ignore.length; j++) {
-            if (datePart.indexOf(settings.ignore[j]) !== -1) {
-                return datePartFormatted;
-            }
-        }
-        for (let i = 0; i < datePartsParsedArray.length; i++) {
-            if (datePart.indexOf(datePartsParsedArray[i]) !== -1) {
-                datePartFormatted = datePart.replace(datePartsParsedArray[i], datePartsParsed[datePartsParsedArray[i]]);
-                break;
-            }
-        }
-        return datePartFormatted;
-    }).join(' ').replace('  ', ' ').trim();
+    settings.format = ` ${settings.format} `;
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])DD(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`DD`]);
+    console.info(`AFTER DD:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])MM(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`MM`]);
+    console.info(`AFTER MM:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])D(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`D`]);
+    console.info(`AFTER D:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])H(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`H`]);
+    console.info(`AFTER H:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])M(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`M`]);
+    console.info(`AFTER M:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])S(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`S`]);
+    console.info(`AFTER S:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])Y(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`Y`]);
+    console.info(`AFTER Y:`, settings.format);
+    settings.format = settings.format.replaceAll(/(?<=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])m(?=[\s!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])/g, datePartsParsed[`m`]);
+    console.info(`AFTER m:`, settings.format);
+    return settings.format.replaceAll(`  `, ` `).trim();
 
 };
