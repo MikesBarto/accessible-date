@@ -9,8 +9,8 @@ const time6data = `Wed Mar 25 2015 09:56:24 GMT+0100 (W. Europe Standard Time)`;
 
 describe('The accessible date', () => {
 	test('should ignore words in the ignore string', () => {
-		expect(accessibleDate(time1data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Tuesday, May Month fifteenth Date Day, two thousand one Year at eleven Hour thirty minutes p m`);
-		expect(accessibleDate(time2data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Thursday, May Month thirty-first Date Day, two thousand eighteen Year at eleven Hour thirty minutes a m`);
+		expect(accessibleDate(time1data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Tuesday, May Month fifteenth Date Day, two thousand one Year at seven Hour thirty minutes p m`);
+		expect(accessibleDate(time2data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Thursday, May Month thirty-first Date Day, two thousand eighteen Year at seven Hour thirty minutes a m`);
 		expect(accessibleDate(time3data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Tuesday, May Month fifteenth Date Day, two thousand eighteen Year at seven Hour thirty minutes p m`);
 		expect(accessibleDate(time4data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Thursday, May Month thirty-first Date Day, two thousand eighteen Year at nine Hour thirty minutes a m`);
 		expect(accessibleDate(time5data, {format: `DD, M Month D Date Day, Y Year at H Hour MM minutes m`, military: false, language: `en`})).toBe(`Wednesday, March Month twenty-fifth Date Day, two thousand fifteen Year at twelve Hour oh clock minutes a m`);
@@ -48,14 +48,14 @@ describe('The accessible English date should return an accessible string formatt
 		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD, M D, Y at H MM`, military: true, language: `en`});
 	});
     test('ISO Date and Time, PM', () => {
-		expect(times.isoDateTimePM.standard).toBe('Tuesday, May fifteenth, two thousand one at eleven thirty p m');
-		expect(times.isoDateTimePM.military).toBe('Tuesday, May fifteenth, two thousand one at twenty-three thirty');
-		expect(times.isoDateTimePM.noMeridian).toBe('Tuesday, May fifteenth, two thousand one at twenty-three thirty');
+		expect(times.isoDateTimePM.standard).toBe('Tuesday, May fifteenth, two thousand one at seven thirty p m');
+		expect(times.isoDateTimePM.military).toBe('Tuesday, May fifteenth, two thousand one at nineteen thirty');
+		expect(times.isoDateTimePM.noMeridian).toBe('Tuesday, May fifteenth, two thousand one at nineteen thirty');
 	});
 	test('ISO Date and Time, AM', () => {
-		expect(times.isoDateTimeAM.standard).toBe('Thursday, May thirty-first, two thousand eighteen at eleven thirty a m');
-		expect(times.isoDateTimeAM.military).toBe('Thursday, May thirty-first, two thousand eighteen at eleven thirty');
-		expect(times.isoDateTimeAM.noMeridian).toBe('Thursday, May thirty-first, two thousand eighteen at eleven thirty');
+		expect(times.isoDateTimeAM.standard).toBe('Thursday, May thirty-first, two thousand eighteen at seven thirty a m');
+		expect(times.isoDateTimeAM.military).toBe('Thursday, May thirty-first, two thousand eighteen at zero seven thirty');
+		expect(times.isoDateTimeAM.noMeridian).toBe('Thursday, May thirty-first, two thousand eighteen at zero seven thirty');
 	});
 	test('ISO Date and Time, Milliseconds', () => {
 		expect(times.isoDateTimeMillisecons.standard).toBe('Tuesday, May fifteenth, two thousand eighteen at seven thirty p m');
@@ -103,12 +103,12 @@ describe('The accessible Spanish date should return an accessible string formatt
 		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD, el D de M, Y a H MM`, military: true, language: `es`});
 	});
     test('ISO Date and Time, PM', () => {
-		expect(times.isoDateTimePM.standard).toBe('martes, el quince de mayo, dos mil uno a once y media de la tarde');
-		expect(times.isoDateTimePM.noMeridian).toBe('martes, el quince de mayo, dos mil uno a once y media');
+		expect(times.isoDateTimePM.standard).toBe('martes, el quince de mayo, dos mil uno a siete y media de la tarde');
+		expect(times.isoDateTimePM.noMeridian).toBe('martes, el quince de mayo, dos mil uno a siete y media');
 	});
 	test('ISO Date and Time, AM', () => {
-		expect(times.isoDateTimeAM.standard).toBe('jueves, el treinta y uno de mayo, dos mil dieceocho a once y media de la mañana');
-		expect(times.isoDateTimeAM.noMeridian).toBe('jueves, el treinta y uno de mayo, dos mil dieceocho a once y media');
+		expect(times.isoDateTimeAM.standard).toBe('jueves, el treinta y uno de mayo, dos mil dieceocho a siete y media de la mañana');
+		expect(times.isoDateTimeAM.noMeridian).toBe('jueves, el treinta y uno de mayo, dos mil dieceocho a siete y media');
 	});
 	test('ISO Date and Time, Milliseconds', () => {
 		expect(times.isoDateTimeMillisecons.standard).toBe('martes, el quince de mayo, dos mil dieceocho a siete y media de la tarde');
@@ -152,12 +152,12 @@ describe('The accessible French date should return an accessible string formatte
 		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD D M Y à H heures MM`, military: true, language: `fr`});
 	});
     test('ISO Date and Time, PM', () => {
-		expect(times.isoDateTimePM.standard).toBe('mardi quinze mai deux mille une à vingt-trois heures trente du soir');
-		expect(times.isoDateTimePM.noMeridian).toBe('mardi quinze mai deux mille une à vingt-trois heures trente');
+		expect(times.isoDateTimePM.standard).toBe('mardi quinze mai deux mille une à dix-neuf heures trente du soir');
+		expect(times.isoDateTimePM.noMeridian).toBe('mardi quinze mai deux mille une à dix-neuf heures trente');
 	});
 	test('ISO Date and Time, AM', () => {
-		expect(times.isoDateTimeAM.standard).toBe('jeudi Trente et un mai deux mille dix-huit à onze heures trente du matin');
-		expect(times.isoDateTimeAM.noMeridian).toBe('jeudi Trente et un mai deux mille dix-huit à onze heures trente');
+		expect(times.isoDateTimeAM.standard).toBe('jeudi Trente et un mai deux mille dix-huit à sept heures trente du matin');
+		expect(times.isoDateTimeAM.noMeridian).toBe('jeudi Trente et un mai deux mille dix-huit à sept heures trente');
 	});
 	test('ISO Date and Time, Milliseconds', () => {
 		expect(times.isoDateTimeMillisecons.standard).toBe('mardi quinze mai deux mille dix-huit à dix-neuf heures trente du soir');

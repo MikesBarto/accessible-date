@@ -1,3 +1,4 @@
 {
-    "verbose": true
+    "verbose": true,
+    "globalSetup": "./.global-setup.js"
 }
