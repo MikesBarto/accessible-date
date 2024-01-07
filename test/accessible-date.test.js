@@ -176,3 +176,52 @@ describe('The accessible French date should return an accessible string formatte
 		expect(times.isoDateFullDate.noMeridian).toBe('mercredi vingt-cinq mars deux mille quinze à huit heures cinquante-six');
 	});
 });
+
+describe('The accessible Italian date should return an accessible string formatted in', () => {
+	const times = {
+		isoDateTimePM: {},
+		isoDateTimeAM: {},
+		isoDateTimeMillisecons: {},
+		isoDateTimeTimezone: {},
+		isoDateDateOnly: {},
+		isoDateFullDate: {}
+	};
+	beforeEach(() => {
+		times.isoDateTimePM.standard = accessibleDate(time1data, {format: `DD D M Y A H e MM m`, military: false, language: `it`});
+		times.isoDateTimePM.noMeridian = accessibleDate(time1data, {format: `DD D M Y A H e MM`, military: true, language: `it`});
+		times.isoDateTimeAM.standard = accessibleDate(time2data, {format: `DD D M Y A H e MM m`, military: false, language: `it`});
+		times.isoDateTimeAM.noMeridian = accessibleDate(time2data, {format: `DD D M Y A H e MM`, military: true, language: `it`});
+		times.isoDateTimeMillisecons.standard = accessibleDate(time3data, {format: `DD D M Y A H e MM m`, military: false, language: `it`});
+		times.isoDateTimeMillisecons.noMeridian = accessibleDate(time3data, {format: `DD D M Y A H e MM`, military: true, language: `it`});
+		times.isoDateTimeTimezone.standard = accessibleDate(time4data, {format: `DD D M Y A H e MM m`, military: false, language: `it`});
+		times.isoDateTimeTimezone.noMeridian = accessibleDate(time4data, {format: `DD D M Y A H e MM`, military: true, language: `it`});
+		times.isoDateDateOnly.standard = accessibleDate(time5data, {format: `DD D M Y A H e MM m`, military: false, language: `it`});
+		times.isoDateDateOnly.noMeridian = accessibleDate(time5data, {format: `DD D M Y A H e MM`, military: true, language: `it`});
+		times.isoDateFullDate.standard = accessibleDate(time6data, {format: `DD D M Y A H e MM m`, military: false, language: `it`});
+		times.isoDateFullDate.noMeridian = accessibleDate(time6data, {format: `DD D M Y A H e MM`, military: true, language: `it`});
+	});
+    test('ISO Date and Time, PM', () => {
+		expect(times.isoDateTimePM.standard).toBe('martedì quindici maggio duemila uno A diciannove e trenta del pomeriggio');
+		expect(times.isoDateTimePM.noMeridian).toBe('martedì quindici maggio duemila uno A diciannove e trenta');
+	});
+	test('ISO Date and Time, AM', () => {
+		expect(times.isoDateTimeAM.standard).toBe('giovedì trentuno maggio duemila diciotto A sette e trenta del mattino');
+		expect(times.isoDateTimeAM.noMeridian).toBe('giovedì trentuno maggio duemila diciotto A sette e trenta');
+	});
+	test('ISO Date and Time, Milliseconds', () => {
+		expect(times.isoDateTimeMillisecons.standard).toBe('martedì quindici maggio duemila diciotto A diciannove e trenta del pomeriggio');
+		expect(times.isoDateTimeMillisecons.noMeridian).toBe('martedì quindici maggio duemila diciotto A diciannove e trenta');
+	});
+	test('ISO Date and Time, Timezone', () => {
+		expect(times.isoDateTimeTimezone.standard).toBe('giovedì trentuno maggio duemila diciotto A nove e trenta del mattino');
+		expect(times.isoDateTimeTimezone.noMeridian).toBe('giovedì trentuno maggio duemila diciotto A nove e trenta');
+	});
+	test('ISO Date and Time, Date Only', () => {
+		expect(times.isoDateDateOnly.standard).toBe('mercoledì venticinque marzo duemila quindici A zero e del mattino');
+		expect(times.isoDateDateOnly.noMeridian).toBe('mercoledì venticinque marzo duemila quindici A zero e');
+	});
+	test('ISO Date and Time, Full Date', () => {
+		expect(times.isoDateFullDate.standard).toBe('mercoledì venticinque marzo duemila quindici A otto e cinquantasei del mattino');
+		expect(times.isoDateFullDate.noMeridian).toBe('mercoledì venticinque marzo duemila quindici A otto e cinquantasei');
+	});
+});

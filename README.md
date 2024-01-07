@@ -1,6 +1,6 @@
 # accessible-date
 
-**accessible-date** is an npm module that creates readable, accessible dates for screen readers. These dates are returned in Coordinated Universal Time (UTC), and are currently available in English, Spanish, and French with more languages to come.
+**accessible-date** is an npm module that creates readable, accessible dates for screen readers. These dates are returned in Coordinated Universal Time (UTC), and are currently available in English, Spanish, French, and Italian with more languages to come.
 
 Screen readers have a hard time deciphering what is and isn’t a date in HTML. For example, if a screen reader comes across the following timestamp:
 
@@ -83,7 +83,7 @@ How the returned string is formatted. You can use any combination of the followi
 - `m` - Meridian (ex: “A M,” “P M”)
 
 `settings.language` - ***default*** `en`
-Set the language you want the output to be formatted to. Currently, it supports English (`en`), Spanish (`es`), and French (`fr`), but more languages will continue to be added.
+Set the language you want the output to be formatted to. Currently, it supports English (`en`), Spanish (`es`), French (`fr`), and Italian (`it`), but more languages will continue to be added.
 
 `settings.military` - ***default*** `false`
 If set to `true`, date will display in military time. Otherwise, it defaults to displaying in standard time.

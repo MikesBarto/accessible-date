@@ -1,6 +1,6 @@
 {
   "name": "accessible-date",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Readable, accessible dates for screen readers.",
   "main": "dist/accessible-date.js",
   "repository": {
@@ -24,6 +24,12 @@
     "french"
   ],
   "author": "Barry Horbal <barry@barryhorbal.com>",
+  "contributors": [
+    {
+      "name": "Fabrizio Guerra",
+      "url": "https://github.com/frammentigrafici"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.23.4",
