@@ -10,6 +10,18 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - German Internationalization
 - Italian Internationalization
 
+## [2.0.2] - 2024-01-07
+
+### Changed
+
+- Fixing version number and updating CHANGELOG.md.
+
+## [2.0.1] - 2024-01-07
+
+### Changed
+
+- Updated dependencies.
+
 ## [2.0.0] - 2023-08-18
 
 ### Changed
