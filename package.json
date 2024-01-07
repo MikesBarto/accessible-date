@@ -24,6 +24,12 @@
     "french"
   ],
   "author": "Barry Horbal <barry@barryhorbal.com>",
+  "contributors": [
+    {
+      "name": "Fabrizio Guerra",
+      "url": "https://github.com/frammentigrafici"
+    }
+  ],
   "license": "MIT",
   "devDependencies": {
     "@babel/cli": "^7.23.4",
