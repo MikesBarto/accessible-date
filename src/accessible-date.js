@@ -135,8 +135,8 @@ export default function accessibleDate(date, options) {
         S: dateParts.date[settings.language][dateToFormat.getUTCSeconds()],
         Y: (() => {
             const year = `${dateToFormat.getUTCFullYear()}`;
-            let century = dateParts.year[settings.language].century[parseInt(year.substr(0, 2))];
-            let decade = dateParts.year[settings.language].decade[parseInt(year.substr(2, 3))];
+            const century = dateParts.year[settings.language].century[parseInt(year.substring(0, 2))];
+            const decade = dateParts.year[settings.language].decade[parseInt(year.substring(2, 4))];
             return `${century} ${decade}`;
         })(),
         m: settings.military ? `` : (dateToFormat.getUTCHours() >= 12) ? dateParts.meridian[settings.language][1] : dateParts.meridian[settings.language][0]
